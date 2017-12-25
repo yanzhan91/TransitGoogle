@@ -68,8 +68,23 @@ def __check(agency, city_full, param):
 
 def generate_response(message):
     return jsonify({
-        "speech": remove_html(message),
-        "displayText": remove_html(message)
+        'data': {
+            'google': {
+                'expectUserResponse': False,
+                'isSsml': False,
+                'noInputPrompts': [],
+                'richResponse': {
+                    'items': [
+                        {
+                            'simpleResponse': {
+                                "textToSpeech": remove_html(message),
+                                "displayText": remove_html(message)
+                            }
+                        }
+                    ]
+                }
+            }
+        }
     })
 
 
